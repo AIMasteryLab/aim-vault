@@ -1,61 +1,60 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AIM Vault</title>
+  <title>AIM Vault — Diagnostic v16</title>
 
-  <!-- Instant favicon (no upload needed) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b1220'/%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='%23ffd700' stroke-width='6'/%3E%3Ctext x='32' y='40' font-family='Arial,Helvetica,sans-serif' font-size='22' text-anchor='middle' fill='%23e7ecf5'%3EAIM%3C/text%3E%3C/svg%3E">
-  <meta name="theme-color" content="#0b1220">
-  <link rel="canonical" href="https://aimasterylab.github.io/aim-vault/">
-  <meta name="color-scheme" content="dark">
-
+  <!-- Simple favicon (inline, no upload) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b1220'/%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='%23ffd700' stroke-width='6'/%3E%3Ctext x='32' y='40' font-family='Arial' font-size='22' text-anchor='middle' fill='%23e7ecf5'%3EAIM%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#10b981">
+  <meta name="color-scheme" content="light">
   <style>
-    :root{
-      --bg1:#0b1220; --bg2:#101826;
-      --text:#e7ecf5; --muted:#a7b2c6;
-      --accent:#7cc1ff; --accent2:#66f0c4;
-      --border:#233048; --gold: rgba(255,215,0,0.95);
+    /* === Diagnostic: no CSS vars; bright, high-contrast === */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #0b1220;                 /* dark text */
+      background: #f4f7fb;            /* bright background (not black) */
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 70% -10%, #1a2540 0%, var(--bg1) 45%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      text-align:center;
+    .banner {
+      background: #10b981;            /* emerald */
+      color: #041316;
+      padding: 10px 14px;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+    header {
+      text-align: center;
+      padding: 24px 16px 10px;
+    }
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 42px;
+      line-height: 1.1;
+      color: #0b1220;
+    }
+    header p {
+      margin: 0;
+      color: #374151;
+      font-weight: 600;
     }
 
-    header{padding:28px 16px}
-    header h1{margin:0 0 6px; font-size:42px; letter-spacing:.3px}
-    header p{margin:0; color:var(--muted)}
-
-    /* Single ring with inner "face" layer so background fits perfectly */
-    .coin{
-      margin:22px auto 10px; width:220px; aspect-ratio:1/1; border-radius:50%;
-      border:4px solid var(--gold); padding:14px;
-      box-shadow: 0 0 36px rgba(255,215,0,0.35), inset 0 0 50px rgba(255,215,0,0.15);
-      background:linear-gradient(180deg,#0e1523,#0b1220);
+    /* Coin ring + face (always shows) */
+    .coin {
+      margin: 22px auto 10px;
+      width: 220px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      border: 4px solid #ffd700;      /* gold ring */
+      padding: 14px;
+      background: #0b1220;            /* dark inner bezel */
+      box-shadow: 0 0 24px rgba(0,0,0,.12), inset 0 0 40px rgba(255,215,0,.12);
     }
-    .coin .face{
-      width:100%; height:100%; border-radius:50%;
-      background:
-        /* Inline SVG fallback coin (no extra ring to avoid duplicates) */
-        url("data:image/svg+xml;utf8,\
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'>\
-          <defs>\
-            <radialGradient id='g' cx='50%25' cy='35%25' r='65%25'>\
-              <stop offset='0%25' stop-color='%23ffffff' stop-opacity='0.06'/>\
-              <stop offset='60%25' stop-color='%230b1220'/>\
-              <stop offset='100%25' stop-color='%23090f1b'/>\
-            </radialGradient>\
-            <linearGradient id='shine' x1='0' y1='0' x2='0' y2='1'>\
-              <stop offset='0%25' stop-color='%23ffd700' stop-opacity='0.45'/>\
-              <stop offset='100%25' stop-color='%23ffd700' stop-opacity='0.05'/>\
-            </linearGradient>\
-          </defs>\
+    .face {
+      position: relative;
+      width: 100%; height: 100%;
+      border
