@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AIM Vault</title>
 
-  <!-- Instant favicon (works even on phone, no upload needed) -->
+  <!-- Instant favicon (works even on phone, no upload needed yet) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b1220'/%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='%23ffd700' stroke-width='6'/%3E%3Ctext x='32' y='40' font-family='Arial,Helvetica,sans-serif' font-size='22' text-anchor='middle' fill='%23e7ecf5'%3EAIM%3C/text%3E%3C/svg%3E">
   <meta name="theme-color" content="#0b1220">
   <link rel="canonical" href="https://aimasterylab.github.io/aim-vault/">
@@ -16,8 +17,7 @@
       --bg1:#0b1220; --bg2:#101826;
       --text:#e7ecf5; --muted:#a7b2c6;
       --accent:#7cc1ff; --accent2:#66f0c4;
-      --border:#233048;
-      --gold: rgba(255,215,0,0.95);
+      --border:#233048; --gold: rgba(255,215,0,0.95);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -34,18 +34,35 @@
     header h1{margin:0 0 6px; font-size:42px; letter-spacing:.3px}
     header p{margin:0; color:var(--muted)}
 
-    /* Coin ring: thicker, brighter, mobile-friendly glow */
+    /* Coin holder with always-on SVG fallback background */
     .coin{
       margin:22px auto 10px; width:220px; aspect-ratio:1/1; border-radius:50%;
       border:4px solid var(--gold); padding:14px;
-      background:linear-gradient(180deg,#0e1523,#0b1220);
+      background:
+        /* inline SVG fallback coin */
+        url("data:image/svg+xml;utf8,\
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'>\
+          <defs>\
+            <radialGradient id='g' cx='50%25' cy='35%25' r='65%25'>\
+              <stop offset='0%25' stop-color='%23ffffff' stop-opacity='0.05'/>\
+              <stop offset='60%25' stop-color='%230b1220'/>\
+              <stop offset='100%25' stop-color='%23090f1b'/>\
+            </radialGradient>\
+          </defs>\
+          <circle cx='300' cy='300' r='290' fill='url(%23g)'/>\
+          <circle cx='300' cy='300' r='250' fill='none' stroke='%23ffd700' stroke-width='16'/>\
+          <text x='300' y='330' font-family='Arial,Helvetica,sans-serif' font-size='140' text-anchor='middle' fill='%23e7ecf5'>AIM</text>\
+        </svg>") center/cover no-repeat,
+        linear-gradient(180deg,#0e1523,#0b1220);
       box-shadow:
         0 0 36px rgba(255,215,0,0.35),
         inset 0 0 50px rgba(255,215,0,0.15);
+      position:relative; overflow:hidden;
     }
     .coin img{
       width:100%; height:100%; object-fit:cover; border-radius:50%;
       filter: drop-shadow(0 10px 20px rgba(0,0,0,.45));
+      display:none; /* hidden until we confirm it loaded */
     }
 
     .cta{
@@ -69,6 +86,87 @@
       0%,100%{ filter:drop-shadow(0 0 0 rgba(124,193,255,.0)) }
       50%    { filter:drop-shadow(0 0 14px rgba(124,193,255,.35)) }
     }
-    @media (prefers-reduced-motion: reduce)
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .btn.primary{ animation:none }
+      .btn, .btn.primary{ transition:none }
+    }
 
+    .content{ max-width:900px; margin:32px auto 60px; padding:0 16px }
+    .content h2{ margin:22px 0 10px }
+    .content p{ margin:0 auto; max-width:720px }
+    footer{ color:var(--muted); margin:44px 0 36px }
 
+    :target{ scroll-margin-top: 70px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AIM Vault</h1>
+    <p>Home of the AI Mastery Lab & AIM Coin</p>
+  </header>
+
+  <!-- Coin with robust loader: fallback shows by default, real image shown only after it loads -->
+  <div class="coin">
+    <img id="coin-img" alt="AIM Vault Coin artwork">
+  </div>
+
+  <div class="cta">
+    <a class="btn primary" href="#about" aria-label="Explore AIM Vault About section">Explore AIM Vault</a>
+    <a class="btn" href="#demo" aria-label="Watch product demo video">Watch Demo</a>
+  </div>
+
+  <section class="content" id="about">
+    <h2>Welcome to AIM Vault</h2>
+    <p>AIM Vault is where AI innovation meets financial mastery. We’re building tools, strategies, and a community around intelligent crypto trading.</p>
+  </section>
+
+  <!-- Video area with poster fallback so it never renders as a blank block -->
+  <section class="content" id="demo" aria-label="Demo video">
+    <video controls playsinline width="720"
+           style="max-width:100%; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#000"
+           poster="https://placehold.co/1280x720/0b1220/e7ecf5?text=AIM+Vault+Demo">
+      <source src="aim_Vault_Loop.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <footer>© 2025 AIM Vault — AI Mastery Lab</footer>
+
+  <!-- Tiny loader that tries multiple likely filenames/paths; shows the first that loads -->
+  <script>
+    (function(){
+      var candidates = [
+        // Absolute URLs first (GitHub Pages)
+        'https://aimasterylab.github.io/aim-vault/AIM_Vault_Coin_Poster_20x30_inch.jpg',
+        'https://aimasterylab.github.io/aim-vault/AIM_Vault_Coin_20x30_DarkBlue.jpg',
+        'https://aimasterylab.github.io/aim-vault/AIM_Vault_Coin_Poster_20x30_inch.png',
+        // Relative fallbacks (if you later change paths)
+        './AIM_Vault_Coin_Poster_20x30_inch.jpg',
+        './AIM_Vault_Coin_20x30_DarkBlue.jpg',
+        './AIM_Vault_Coin_Poster_20x30_inch.png'
+      ];
+
+      var imgEl = document.getElementById('coin-img');
+      var i = 0;
+
+      function tryNext(){
+        if(i >= candidates.length){
+          // Nothing loaded; leave SVG fallback background visible
+          return;
+        }
+        var url = candidates[i++];
+        var test = new Image();
+        test.onload = function(){
+          imgEl.src = url;
+          imgEl.style.display = 'block'; // reveal real image
+        };
+        test.onerror = tryNext;
+        test.src = url + (url.indexOf('?') === -1 ? '?v=' + Date.now() : '');
+      }
+
+      tryNext();
+    })();
+  </script>
+</body>
+</html>
