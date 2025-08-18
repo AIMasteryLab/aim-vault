@@ -25,6 +25,23 @@
       margin: 0.5rem 0 0;
       font-size: 1.2rem;
     }
+    .vault-btn {
+      display: inline-block;
+      background-color: gold;
+      color: black;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .vault-btn:hover {
+      background-color: #d4af37; /* darker gold */
+      transform: scale(1.05);
+    }
     .coin {
       margin: 2rem auto;
       max-width: 400px;
@@ -52,14 +69,16 @@
   </style>
 </head>
 <body>
-  <header><!-- AIM Vault Button -->
-<a href="#about" class="vault-btn">Enter AIM Vault</a>
+  <header>
+    <!-- AIM Vault Button -->
+    <a href="#about" class="vault-btn">Enter AIM Vault</a>
+  </header>
 
   <div class="coin">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Bitcoin_logo.svg/1200px-Bitcoin_logo.svg.png" alt="AIM Vault Coin" />
   </div>
 
-  <section>
+  <section id="about">
     <h2>Welcome to AIM Vault</h2>
     <p>
       AIM Vault is where AI innovation meets financial mastery.  
