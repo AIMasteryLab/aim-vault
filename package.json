@@ -1,0 +1,19 @@
+{
+  "name": "aim-vault-site",
+  "version": "1.0.0",
+  "description": "Website for AIM Vault and AI Mastery Lab",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "AIM Vault",
+    "AI Mastery Lab",
+    "cryptocurrency",
+    "website"
+  ],
+  "author": "Jim",
+  "license": "MIT",
+  "dependencies": {}
+}
