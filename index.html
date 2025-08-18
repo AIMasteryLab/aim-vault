@@ -1,110 +1,74 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AIM Vault</title>
+
+  <!-- Instant favicon (works even on phone, no upload needed) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b1220'/%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='%23ffd700' stroke-width='6'/%3E%3Ctext x='32' y='40' font-family='Arial,Helvetica,sans-serif' font-size='22' text-anchor='middle' fill='%23e7ecf5'%3EAIM%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://aimasterylab.github.io/aim-vault/">
+
   <style>
-    :root{--bg1:#0b1220;--bg2:#101826;--text:#e7ecf5;--muted:#a7b2c6;--accent:#7cc1ff;--accent2:#66f0c4;--border:#233048;}
+    :root{
+      --bg1:#0b1220; --bg2:#101826;
+      --text:#e7ecf5; --muted:#a7b2c6;
+      --accent:#7cc1ff; --accent2:#66f0c4;
+      --border:#233048;
+      --gold: rgba(255,215,0,0.95);
+    }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;color:var(--text);
+      margin:0; color:var(--text);
       background:
-        radial-gradient(1200px 700px at 70% -10%,#1a2540 0%,var(--bg1) 45%),
-        linear-gradient(180deg,var(--bg1),var(--bg2));
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+        radial-gradient(1200px 700px at 70% -10%, #1a2540 0%, var(--bg1) 45%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       text-align:center;
     }
+
     header{padding:28px 16px}
-    header h1{margin:0 0 6px;font-size:42px;letter-spacing:.3px}
-    header p{margin:0;color:var(--muted)}
+    header h1{margin:0 0 6px; font-size:42px; letter-spacing:.3px}
+    header p{margin:0; color:var(--muted)}
+
+    /* Coin ring: thicker, brighter, mobile-friendly glow */
     .coin{
-      margin:22px auto 10px;width:200px;aspect-ratio:1/1;border-radius:50%;
-      border:3px solid rgba(255,215,0,.65);padding:12px;
+      margin:22px auto 10px; width:220px; aspect-ratio:1/1; border-radius:50%;
+      border:4px solid var(--gold); padding:14px;
       background:linear-gradient(180deg,#0e1523,#0b1220);
-      box-shadow:0 0 28px rgba(255,215,0,.18), inset 0 0 44px rgba(255,215,0,.08);
+      box-shadow:
+        0 0 36px rgba(255,215,0,0.35),
+        inset 0 0 50px rgba(255,215,0,0.15);
     }
-    .coin img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}
-    .cta{display:flex;gap:12px;justify-content:center;margin:18px 0 6px;flex-wrap:wrap}
+    .coin img{
+      width:100%; height:100%; object-fit:cover; border-radius:50%;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.45));
+    }
+
+    .cta{
+      display:flex; gap:12px; justify-content:center; margin:18px 0 6px; flex-wrap:wrap;
+    }
     .btn{
-      border:1px solid var(--border);color:var(--text);
-      padding:10px 16px;border-radius:10px;text-decoration:none;
+      border:1px solid var(--border); color:var(--text);
+      padding:10px 16px; border-radius:10px; text-decoration:none;
       background:linear-gradient(180deg,#111a2a,#0e1523);
       transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-      display:inline-flex;align-items:center;gap:8px;font-weight:700;
+      display:inline-flex; align-items:center; gap:8px; font-weight:700;
     }
-    .btn:hover,.btn:focus-visible{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .btn:hover, .btn:focus-visible{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(0,0,0,.35) }
     .btn.primary{
-      border-color:transparent;background:linear-gradient(90deg,var(--accent),var(--accent2));
-      color:#05121f;font-weight:800;animation:pulse 3.2s ease-in-out infinite;
+      border-color:transparent;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:#05121f; font-weight:800;
+      animation:pulse 3.2s ease-in-out infinite;
     }
-    @keyframes pulse{0%,100%{filter:drop-shadow(0 0 0 rgba(124,193,255,.0))}50%{filter:drop-shadow(0 0 14px rgba(124,193,255,.35))}}
-    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn.primary{animation:none}.btn, .btn.primary{transition:none}}
-    .content{max-width:900px;margin:32px auto 60px;padding:0 16px}
-    .content h2{margin:22px 0 10px}
-    .content p{margin:0 auto;max-width:720px}
-    footer{color:var(--muted); margin:44px 0 36px}
-    :target{scroll-margin-top:70px}
-    <!-- Instant favicon (data-URI, no upload) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b1220'/%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='%23ffd700' stroke-width='6'/%3E%3Ctext x='32' y='40' font-family='Arial,Helvetica,sans-serif' font-size='22' text-anchor='middle' fill='%23e7ecf5'%3EAIM%3C/text%3E%3C/svg%3E">
-
-<!-- Apple touch icon (uses a placeholder PNG so iOS has an icon too) -->
-<link rel="apple-touch-icon" sizes="180x180" href="https://placehold.co/180x180/0b1220/ffd700/png?text=AIM">
-
-<!-- Canonical -->
-<link rel="canonical" href="https://aimasterylab.github.io/aim-vault/">
-
-<!-- Open Graph / Twitter: uses a placeholder OG image for now -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aimasterylab.github.io/aim-vault/">
-<meta property="og:title" content="AIM Vault — AI Mastery Lab">
-<meta property="og:description" content="AI innovation meets financial mastery. Tools, strategies, and a community for intelligent crypto trading.">
-<meta property="og:image" content="https://placehold.co/1200x630/0b1220/ffd700/jpg?text=AIM+Vault+—+AI+Mastery+Lab">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AIM Vault — AI Mastery Lab">
-<meta name="twitter:description" content="AI innovation meets financial mastery. Tools, strategies, and a community for intelligent crypto trading.">
-<meta name="twitter:image" content="https://placehold.co/1200x630/0b1220/ffd700/jpg?text=AIM+Vault+—+AI+Mastery+Lab">
-
-  </style>
-</head>
-<body>
-  <header>
-    <h1>AIM Vault</h1>
-    <p>Home of the AI Mastery Lab & AIM Coin</p>
-  </header>
-
-  <div class="coin" aria-hidden="true">
-    <img
-      src="AIM_Vault_Coin_Poster_20x30_inch.jpg"
-      alt="AIM Vault Coin artwork"
-      onerror="this.onerror=null;this.src='https://placehold.co/600x600/0b1220/e7ecf5?text=AIM+Vault+Coin';"
-    >
-  </div>
-
-  <div class="cta">
-    <a class="btn primary" href="#about" aria-label="Explore AIM Vault About section">Explore AIM Vault</a>
-    <a class="btn" href="#demo" aria-label="Watch product demo video">Watch Demo</a>
-  </div>
-
-  <section class="content" id="about">
-    <h2>Welcome to AIM Vault</h2>
-    <p>AIM Vault is where AI innovation meets financial mastery. We’re building tools, strategies, and a community around intelligent crypto trading.</p>
-  </section>
-
-  <section class="content" id="demo" aria-label="Demo video">
-    <video controls playsinline width="720" style="max-width:100%; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#000"
-           poster="https://placehold.co/1280x720/0b1220/e7ecf5?text=AIM+Vault+Demo">
-      <source src="aim_Vault_Loop.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </section>
-
-  <footer>© 2025 AIM Vault — AI Mastery Lab</footer>
-</body>
-</html>
+    @keyframes pulse{
+      0%,100%{ filter:drop-shadow(0 0 0 rgba(124,193,255,.0)) }
+      50%    { filter:drop-shadow(0 0 14px rgba(124,193,255,.35)) }
+    }
+    @media (prefers-reduced-motion: reduce)
 
 
