@@ -1,96 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIM Vault – AI Mastery Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIM Vault</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #0a0f29, #1c1f3b);
-      color: white;
-      text-align: center;
+    :root{
+      --bg1:#0b1220;--bg2:#101826;--card:#141c2c;
+      --text:#e7ecf5;--muted:#a7b2c6;--accent:#7cc1ff;--accent2:#66f0c4;--border:#233048;
     }
-    header {
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.6);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 70% -10%,#1a2540 0%,var(--bg1) 45%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      text-align:center
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      color: gold;
+    header{padding:28px 16px}
+    header h1{margin:0 0 6px;font-size:42px;letter-spacing:.3px}
+    header p{margin:0;color:var(--muted)}
+    .coin{
+      margin:22px auto 10px;width:200px;aspect-ratio:1/1;border-radius:50%;
+      border:3px solid rgba(255,215,0,.65);padding:12px;
+      background:linear-gradient(180deg,#0e1523,#0b1220);
+      box-shadow:
+        0 0 28px rgba(255,215,0,.18),
+        inset 0 0 44px rgba(255,215,0,.08)
     }
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1.2rem;
+    .coin img{
+      width:100%;height:100%;object-fit:cover;border-radius:50%;
+      filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))
     }
-    .vault-btn {
-      display: inline-block;
-      background-color: gold;
-      color: black;
-      font-size: 1.2rem;
-      font-weight: bold;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, background-color 0.2s;
-    }
-    .vault-btn:hover {
-      background-color: #d4af37; /* darker gold */
-      transform: scale(1.05);
-    }
-    .coin {
-      margin: 2rem auto;
-      max-width: 400px;
-    }
-    .coin img {
-      width: 100%;
-      border-radius: 50%;
-      border: 5px solid gold;
-      box-shadow: 0 0 30px gold;
-    }
-    section {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    section h2 {
-      color: gold;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 1rem;
-      background: rgba(0,0,0,0.8);
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <!-- AIM Vault Button -->
-    <a href="#about" class="vault-btn">Enter AIM Vault</a>
-  </header>
 
-  <div class="coin">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Bitcoin_logo.svg/1200px-Bitcoin_logo.svg.png" alt="AIM Vault Coin" />
-  </div>
-
-  <section id="about">
-    <h2>Welcome to AIM Vault</h2>
-    <p>
-      AIM Vault is where AI innovation meets financial mastery.  
-      Our goal is to build tools, strategies, and a community around artificial intelligence and cryptocurrency.  
-    </p>
-    <p>
-      Stay tuned for updates, tutorials, and insights that will shape the future.
-    </p>
-  </section>
-
-  <footer>
-    © 2025 AIM Vault – AI Mastery Lab
-  </footer>
-</body>
-</html>
+    .cta{display:flex;gap:12px;justify-content:center;margin:18px 0 6px;flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--border);color:var(--text);
+      padding:10px 16px;border-r
