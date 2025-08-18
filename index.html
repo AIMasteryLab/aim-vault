@@ -1,52 +1,45 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AIM Vault</title>
+  <title>AIM Vault — Failsafe v18</title>
+  <meta name="color-scheme" content="light">
   <style>
-    :root{--bg1:#0b1220;--bg2:#101826;--text:#e7ecf5;--muted:#a7b2c6;--accent:#7cc1ff;--accent2:#66f0c4;--border:#233048;}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 70% -10%,#1a2540 0%,var(--bg1) 45%),
-        linear-gradient(180deg,var(--bg1),var(--bg2));
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      text-align:center;
+    /* Failsafe: no variables, no gradients, no fancy layout */
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: #ffffff;      /* hard white */
+      color: #000000;           /* hard black */
+      font: 18px/1.5 -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
     }
-    header{padding:28px 16px}
-    header h1{margin:0 0 6px;font-size:42px;letter-spacing:.3px}
-    header p{margin:0;color:var(--muted)}
-    .coin{
-      margin:22px auto 10px;width:200px;aspect-ratio:1/1;border-radius:50%;
-      border:3px solid rgba(255,215,0,.65);padding:12px;
-      background:linear-gradient(180deg,#0e1523,#0b1220);
-      box-shadow:0 0 28px rgba(255,215,0,.18), inset 0 0 44px rgba(255,215,0,.08);
+    header { text-align: center; padding: 24px 16px 6px; }
+    h1 { margin: 0 0 8px; font-size: 34px; }
+    p  { margin: 0; color: #222; }
+    .coin-wrap {
+      display: flex; align-items: center; justify-content: center;
+      padding: 18px 0;
     }
-    .coin img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}
-    .cta{display:flex;gap:12px;justify-content:center;margin:18px 0 6px;flex-wrap:wrap}
-    .btn{
-      border:1px solid var(--border);color:var(--text);
-      padding:10px 16px;border-radius:10px;text-decoration:none;
-      background:linear-gradient(180deg,#111a2a,#0e1523);
-      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-      display:inline-flex;align-items:center;gap:8px;font-weight:700;
+    .coin {
+      width: 220px; height: 220px; border-radius: 50%;
+      border: 4px solid #ffd700;  /* gold ring */
+      padding: 14px; background: #0b1220;  /* dark bezel */
     }
-    .btn:hover,.btn:focus-visible{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
-    .btn.primary{
-      border-color:transparent;background:linear-gradient(90deg,var(--accent),var(--accent2));
-      color:#05121f;font-weight:800;
-      animation:pulse 3.2s ease-in-out infinite;
+    .coin img {
+      display: block; width: 100%; height: 100%;
+      border-radius: 50%; object-fit: cover; background: #0b1220;
     }
-    @keyframes pulse{0%,100%{filter:drop-shadow(0 0 0 rgba(124,193,255,.0))}50%{filter:drop-shadow(0 0 14px rgba(124,193,255,.35))}}
-    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn.primary{animation:none}.btn, .btn.primary{transition:none}}
-    .content{max-width:900px;margin:32px auto 60px;padding:0 16px}
-    .content h2{margin:22px 0 10px}
-    .content p{margin:0 auto;max-width:720px}
-    footer{color:var(--muted); margin:44px 0 36px}
-    :target{scroll-margin-top:70px}
+    .cta { display: flex; gap: 12px; justify-content: center; padding: 10px 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 800; letter-spacing: .4px;
+      background: #0b1220; color: #ffffff; padding: 10px 14px; border-radius: 10px; border: 2px solid #0b1220;
+    }
+    main { max-width: 900px; margin: 20px auto 40px; padding: 0 16px; text-align: center; }
+    footer { text-align: center; color: #444; padding: 30px 16px; }
+    .debug { text-align:center; font-size: 12px; color: #666; padding: 6px 0 0; }
   </style>
 </head>
 <body>
@@ -55,27 +48,39 @@
     <p>Home of the AI Mastery Lab & AIM Coin</p>
   </header>
 
-  <div class="coin" aria-hidden="true">
-    <img src="AIM_Vault_Coin_Poster_20x30_inch.jpg" alt="AIM Vault Coin artwork">
+  <!-- Always-visible SVG coin; no external files needed -->
+  <div class="coin-wrap">
+    <div class="coin">
+      <img id="coin-img" alt="AIM Vault Coin"
+           src="data:image/svg+xml;utf8,\
+           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'>\
+             <defs>\
+               <radialGradient id='g' cx='50%25' cy='35%25' r='65%25'>\
+                 <stop offset='0%25' stop-color='%23ffffff' stop-opacity='0.06'/>\
+                 <stop offset='60%25' stop-color='%230b1220'/>\
+                 <stop offset='100%25' stop-color='%23090f1b'/>\
+               </radialGradient>\
+               <linearGradient id='shine' x1='0' y1='0' x2='0' y2='1'>\
+                 <stop offset='0%25' stop-color='%23ffd700' stop-opacity='0.45'/>\
+                 <stop offset='100%25' stop-color='%23ffd700' stop-opacity='0.05'/>\
+               </linearGradient>\
+             </defs>\
+             <circle cx='300' cy='300' r='290' fill='url(%23g)'/>\
+             <circle cx='300' cy='300' r='250' fill='url(%23shine)' opacity='0.22'/>\
+             <text x='300' y='332' font-family='Arial,Helvetica,sans-serif' font-size='140' text-anchor='middle' fill='%23e7ecf5' letter-spacing='3'>AIM</text>\
+           </svg>">
+    </div>
   </div>
+  <div id="debug" class="debug">Showing inline SVG coin (no external image needed).</div>
 
   <div class="cta">
-    <a class="btn primary" href="#about" aria-label="Explore AIM Vault About section">Explore AIM Vault</a>
-    <a class="btn" href="#demo" aria-label="Watch product demo video">Watch Demo</a>
+    <a class="btn" href="#about">Explore AIM Vault</a>
+    <a class="btn" href="#demo">Watch Demo</a>
   </div>
 
-  <section class="content" id="about">
+  <main id="about">
     <h2>Welcome to AIM Vault</h2>
     <p>AIM Vault is where AI innovation meets financial mastery. We’re building tools, strategies, and a community around intelligent crypto trading.</p>
-  </section>
+  </main>
 
-  <section class="content" id="demo" aria-label="Demo video">
-    <video controls playsinline width="720" style="max-width:100%; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#000">
-      <source src="aim_Vault_Loop.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </section>
-
-  <footer>© 2025 AIM Vault — AI Mastery Lab</footer>
-</body>
-</html>
+  <section id="demo" style=
