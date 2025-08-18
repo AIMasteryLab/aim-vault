@@ -1,8 +1,82 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Sanity</title>
-<style>body{margin:0;background:#0b1220;color:#e7ecf5;font:20px/1.4 system-ui;text-align:center}h1{margin:20vh 0 10px}p{color:#a7b2c6}</style>
-</head><body>
-  <h1>It works — AIM Vault</h1>
-  <p>If you can see this, your file is loading correctly.</p>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIM Vault</title>
+  <style>
+    :root{--bg1:#0b1220;--bg2:#101826;--text:#e7ecf5;--muted:#a7b2c6;--accent:#7cc1ff;--accent2:#66f0c4;--border:#233048;}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 70% -10%,#1a2540 0%,var(--bg1) 45%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      text-align:center;
+    }
+    header{padding:28px 16px}
+    header h1{margin:0 0 6px;font-size:42px;letter-spacing:.3px}
+    header p{margin:0;color:var(--muted)}
+    .coin{
+      margin:22px auto 10px;width:200px;aspect-ratio:1/1;border-radius:50%;
+      border:3px solid rgba(255,215,0,.65);padding:12px;
+      background:linear-gradient(180deg,#0e1523,#0b1220);
+      box-shadow:0 0 28px rgba(255,215,0,.18), inset 0 0 44px rgba(255,215,0,.08);
+    }
+    .coin img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}
+    .cta{display:flex;gap:12px;justify-content:center;margin:18px 0 6px;flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--border);color:var(--text);
+      padding:10px 16px;border-radius:10px;text-decoration:none;
+      background:linear-gradient(180deg,#111a2a,#0e1523);
+      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      display:inline-flex;align-items:center;gap:8px;font-weight:700;
+    }
+    .btn:hover,.btn:focus-visible{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .btn.primary{
+      border-color:transparent;background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:#05121f;font-weight:800;
+      animation:pulse 3.2s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{filter:drop-shadow(0 0 0 rgba(124,193,255,.0))}50%{filter:drop-shadow(0 0 14px rgba(124,193,255,.35))}}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn.primary{animation:none}.btn, .btn.primary{transition:none}}
+    .content{max-width:900px;margin:32px auto 60px;padding:0 16px}
+    .content h2{margin:22px 0 10px}
+    .content p{margin:0 auto;max-width:720px}
+    footer{color:var(--muted); margin:44px 0 36px}
+    :target{scroll-margin-top:70px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AIM Vault</h1>
+    <p>Home of the AI Mastery Lab & AIM Coin</p>
+  </header>
+
+  <div class="coin" aria-hidden="true">
+    <img src="AIM_Vault_Coin_Poster_20x30_inch.jpg" alt="AIM Vault Coin artwork">
+  </div>
+
+  <div class="cta">
+    <a class="btn primary" href="#about" aria-label="Explore AIM Vault About section">Explore AIM Vault</a>
+    <a class="btn" href="#demo" aria-label="Watch product demo video">Watch Demo</a>
+  </div>
+
+  <section class="content" id="about">
+    <h2>Welcome to AIM Vault</h2>
+    <p>AIM Vault is where AI innovation meets financial mastery. We’re building tools, strategies, and a community around intelligent crypto trading.</p>
+  </section>
+
+  <section class="content" id="demo" aria-label="Demo video">
+    <video controls playsinline width="720" style="max-width:100%; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#000">
+      <source src="aim_Vault_Loop.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <footer>© 2025 AIM Vault — AI Mastery Lab</footer>
+</body>
+</html>
 
